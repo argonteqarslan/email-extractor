@@ -12,8 +12,8 @@ function extractLatestEmail(rawHtml) {
     "div#divRplyFwdMsg",
     "div#x_divRplyFwdMsg",
     "div#gmail_quote",
-    "div.gmail_quote", // Make sure this is correctly targeted
-    "div.gmail_quote_container", // Ensure Gmail containers are also removed
+    "div.gmail_quote",
+    "div.gmail_quote_container",
     "blockquote.gmail_quote",
     'blockquote[type="cite"]',
     "blockquote.yahoo_quoted",
@@ -92,6 +92,9 @@ function extractLatestEmail(rawHtml) {
   if (earliestMatchIndex !== cleanedText.length) {
     cleanedText = cleanedText.substring(0, earliestMatchIndex);
   }
+
+  // Collapse multiple newlines into one
+  cleanedText = cleanedText.replace(/\n\s*\n/g, "\n");
 
   return cleanedText.trim();
 }
