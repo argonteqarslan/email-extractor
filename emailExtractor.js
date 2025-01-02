@@ -12,7 +12,8 @@ function extractLatestEmail(rawHtml) {
     "div#divRplyFwdMsg",
     "div#x_divRplyFwdMsg",
     "div#gmail_quote",
-    "div.gmail_extra",
+    "div.gmail_quote", // Make sure this is correctly targeted
+    "div.gmail_quote_container", // Ensure Gmail containers are also removed
     "blockquote.gmail_quote",
     'blockquote[type="cite"]',
     "blockquote.yahoo_quoted",
@@ -66,6 +67,7 @@ function extractLatestEmail(rawHtml) {
     "blockquote[style*='margin: 0px; padding: 0px; border: none;']",
   ];
 
+  // Remove known selectors
   knownReplySelectors.forEach((selector) => {
     $(selector).remove();
   });
